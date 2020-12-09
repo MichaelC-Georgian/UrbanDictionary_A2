@@ -22,7 +22,7 @@ public class APIUtility {
     /**
      * This method will receive a search string and send that to the Urban Dictionary API
      * to receive a JSON file. The file will be written to definitionInfo.json
-     * @param searchText
+     * @param searchText The text or term that is being searched in the api
      */
     public static UrbanDictionaryResponse callUrbanDictionary(String searchText) throws IOException, InterruptedException {
         //Where to store results locally
@@ -59,7 +59,7 @@ public class APIUtility {
         try
                 (
                         FileReader fileReader = new FileReader(jsonFile);
-                        JsonReader jsonReader = new JsonReader(fileReader);
+                        JsonReader jsonReader = new JsonReader(fileReader)
                 )
         {
             searchResult = gson.fromJson(jsonReader, UrbanDictionaryResponse.class);

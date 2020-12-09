@@ -14,7 +14,7 @@ public class Definition {
     private int thumbsUp;
 
     @SerializedName("sound_urls")
-    private String soundURLs[];
+    private String[] soundURLs;
 
     private String author, word;
 

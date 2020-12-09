@@ -55,9 +55,7 @@ public class SearchUrbanDictionaryViewController implements Initializable {
 
             rowsReturnedLabel.setText(String.valueOf(definitions.size()));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
