@@ -76,7 +76,7 @@ public class SearchUrbanDictionaryViewController implements Initializable {
     @FXML
     void switchScene(ActionEvent event) throws IOException {
 
-        SceneChanger.changeScene(event, "Views/DefinitionView.fxml", "Definition View");
+        SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition View");
     }
 
     @Override
