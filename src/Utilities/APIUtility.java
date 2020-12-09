@@ -33,6 +33,8 @@ public class APIUtility {
         //Where to store results locally
         String jsonLocation = "src/Utilities/definitionInfo.json";
 
+        //Remove leading and trailing spaces, replace the rest of them with %20
+        searchText = searchText.trim().replaceAll(" ", "%20");
 
         //Calls the urban dictionary API with the entered search text
         HttpRequest request = HttpRequest.newBuilder()

@@ -11,12 +11,18 @@ import Utilities.APIUtility;
 import Utilities.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +33,7 @@ import java.util.ResourceBundle;
 import static Utilities.SceneChanger.changeScene;
 
 public class SearchUrbanDictionaryViewController implements Initializable {
+    Definition selectedItem;
 
     @FXML
     private TextField searchTextField;
@@ -74,9 +81,31 @@ public class SearchUrbanDictionaryViewController implements Initializable {
     }
 
     @FXML
-    void switchScene(ActionEvent event) throws IOException {
+    void getSelection(MouseEvent event) {
+    selectedItem = definitionListView.getSelectionModel().getSelectedItem();
+    System.out.println(selectedItem);
+    }
 
-        SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition View");
+    /***
+     * When called, change the scene to the Definition View
+     * @param event That event responsible for calling this method, should be a click on the detailsBtn
+     * @throws IOException If there's an error finding or reading the file, this error will be thrown.
+     */
+    @FXML
+    void switchScene(ActionEvent event) throws IOException {
+        selectedItem = definitionListView.getSelectionModel().getSelectedItem();
+        System.out.println(selectedItem);
+        if (!(selectedItem == null)) {
+            errorLabel.setText("");
+
+
+
+            SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition View", selectedItem);
+        }
+        else
+            {
+            errorLabel.setText("Please select an item first");
+        }
     }
 
     @Override
