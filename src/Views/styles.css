@@ -1,0 +1,5 @@
+.root{
+    -fx-background-color: linear-gradient(from 10px 10px to 500px 500px, Orange, Cyan);
+
+    -fx-font-size: 20pt;
+}
