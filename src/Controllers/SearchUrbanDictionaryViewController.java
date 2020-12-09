@@ -1,8 +1,15 @@
+/*
+ * Michael Caldwell, 200445010, 2020/12/08
+ * Adv Java (Section 1) - Assignment 2
+ */
+
 package Controllers;
 
 import Models.Definition;
 import Models.UrbanDictionaryResponse;
 import Utilities.APIUtility;
+import Utilities.SceneChanger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,6 +23,8 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static Utilities.SceneChanger.changeScene;
 
 public class SearchUrbanDictionaryViewController implements Initializable {
 
@@ -31,9 +40,13 @@ public class SearchUrbanDictionaryViewController implements Initializable {
     @FXML
     private Label rowsReturnedLabel;
 
+    @FXML
+    private Label errorLabel;
 
     @FXML
-    private ImageView movieImageView;
+    private Button detailsBtn;
+
+
 
     /**
      * When the search button is pressed on the view
@@ -60,9 +73,17 @@ public class SearchUrbanDictionaryViewController implements Initializable {
         }
     }
 
+    @FXML
+    void switchScene(ActionEvent event) throws IOException {
+
+        SceneChanger.changeScene(event, "Views/DefinitionView.fxml", "Definition View");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Make conditional sections blank.
         rowsReturnedLabel.setText("");
+        errorLabel.setText("");
 
 //        movieListView.getSelectionModel().selectedItemProperty().addListener(
 //                (obs, oldValue, movieSelected) -> {

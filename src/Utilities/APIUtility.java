@@ -1,3 +1,8 @@
+/*
+ * Michael Caldwell, 200445010, 2020/12/08
+ * Adv Java (Section 1) - Assignment 2
+ */
+
 package Utilities;
 
 /*

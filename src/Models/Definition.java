@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Definition {
 
-    //Variable declaration
+    //Variable declaration with serialized names as needed to maintain lower camel case.
     private String definition, permalink;
 
     @SerializedName("thumbs_Up")
@@ -18,7 +18,8 @@ public class Definition {
 
     private String author, word;
 
-    private int defid;
+    @SerializedName("defid")
+    private int defID;
 
     @SerializedName("current_vote")
     private String currentVote;
@@ -39,20 +40,20 @@ public class Definition {
      * @param soundURLs (unsure) likely the location of sound files for pronouncing a word
      * @param author The username of the individual who submitted the definition
      * @param word The word in question
-     * @param defid (unsure) an internalID used by the internals.
+     * @param defID (unsure) an internalID used by the internals.
      * @param currentVote (unsure) the users current vote, (thumbs up or down)
      * @param writtenOn the date the term was written/submitted on
      * @param example an example of how to use the term in a sentence
      * @param thumbsDown a number responsible for showing community disapproval of a term
      */
-    public Definition(String definition, String permalink, int thumbsUp, String[] soundURLs, String author, String word, int defid, String currentVote, String writtenOn, String example, String thumbsDown) {
+    public Definition(String definition, String permalink, int thumbsUp, String[] soundURLs, String author, String word, int defID, String currentVote, String writtenOn, String example, String thumbsDown) {
         setDefinition(definition);
         setPermalink(permalink);
         setThumbsUp(thumbsUp);
         setSoundURLs(soundURLs);
         setAuthor(author);
         setWord(word);
-        setDefid(defid);
+        setDefID(defID);
         setCurrentVote(currentVote);
         setWrittenOn(writtenOn);
         setExample(example);
@@ -107,12 +108,12 @@ public class Definition {
         this.word = word;
     }
 
-    public int getDefid() {
-        return defid;
+    public int getDefID() {
+        return defID;
     }
 
-    public void setDefid(int defid) {
-        this.defid = defid;
+    public void setDefID(int defID) {
+        this.defID = defID;
     }
 
     public String getCurrentVote() {
