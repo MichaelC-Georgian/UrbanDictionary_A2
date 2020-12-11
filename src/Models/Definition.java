@@ -2,6 +2,10 @@ package Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /***
  * A class designed to handle the object structure of an urban dictionary response.
  */
@@ -126,6 +130,10 @@ public class Definition {
 
     public String getWrittenOn() {
         return writtenOn;
+    }
+
+    public String getYMD() {
+        return writtenOn.substring(0, 10);
     }
 
     public void setWrittenOn(String writtenOn) {

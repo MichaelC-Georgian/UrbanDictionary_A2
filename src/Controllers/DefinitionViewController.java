@@ -82,7 +82,7 @@ public class DefinitionViewController implements Initializable {
             definitionTextArea.setText(selectedItem.getDefinition()); //Set definition test area appropriately
             usageTextArea.setText(selectedItem.getExample()); //Set usage text area appropriately
 
-            String credit = "By " + selectedItem.getAuthor() + " on " + selectedItem.getWrittenOn(); //Prep label as it contains multiple values
+            String credit = "By " + selectedItem.getAuthor() + " on " + selectedItem.getYMD(); //Prep label as it contains multiple values
             authorAndDateLabel.setText(credit); //Set author and date label with prepared text
 
             permalinkHL.setText(selectedItem.getPermalink()); //set permalink text.

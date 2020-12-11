@@ -56,7 +56,7 @@ public class SceneChanger {
         stage.setUserData(selectedItem); //Saves data to an accessible location
         stage.setScene(scene);
         stage.setTitle(title);
-        //stage.getIcons().add(new Image("file:resources/images/icon.png"));
+        stage.getIcons().add(new Image("/Resources/A3Logo.png"));
         stage.show();
     }
 }

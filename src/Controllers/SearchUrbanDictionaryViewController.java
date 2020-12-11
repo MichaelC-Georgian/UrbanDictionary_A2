@@ -33,7 +33,11 @@ import java.util.ResourceBundle;
 import static Utilities.SceneChanger.changeScene;
 
 public class SearchUrbanDictionaryViewController implements Initializable {
+
     Definition selectedItem;
+
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private TextField searchTextField;
@@ -80,7 +84,7 @@ public class SearchUrbanDictionaryViewController implements Initializable {
                 definitionListView.getItems().addAll(definitions);
 
                 //State the number of definitions found.
-                rowsReturnedLabel.setText("Definitions Found: " + String.valueOf(definitions.size()));
+                rowsReturnedLabel.setText("Definitions Found: " + definitions.size());
 
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
@@ -114,9 +118,9 @@ public class SearchUrbanDictionaryViewController implements Initializable {
         if (!(selectedItem == null)) {
             errorLabel.setText("");
 
-            SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition View", selectedItem);
+            SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition of " + selectedItem.getWord() , selectedItem);
         } else {
-            errorLabel.setText("Please select an item first");
+            errorLabel.setText("Please search and select an item first");
         }
     }
 
