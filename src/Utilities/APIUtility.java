@@ -55,7 +55,7 @@ public class APIUtility {
     /**
      * This method receives a JSON file and extracts definition object data out of it
      * in a UrbanDictionaryResponse object
-     * @param jsonFile this file must adhere to UrbanDictionary standard response
+     * @param jsonFile this file must adhere to UrbanDictionaryResponse standard response
      * @return the result of the search
      */
     public static UrbanDictionaryResponse getDefinitionsFromJSON(File jsonFile)
@@ -69,13 +69,13 @@ public class APIUtility {
                         JsonReader jsonReader = new JsonReader(fileReader)
                 )
         {
+            //Populate searchResult with an UrbanDictionaryReponse object
             searchResult = gson.fromJson(jsonReader, UrbanDictionaryResponse.class);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-
         return searchResult;
     }
 
