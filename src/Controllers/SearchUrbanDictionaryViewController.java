@@ -54,36 +54,48 @@ public class SearchUrbanDictionaryViewController implements Initializable {
     private Button detailsBtn;
 
 
-
     /**
      * When the search button is pressed on the view
      * call this method, which calls the urban dictionary and searches the
      * entered term and then populates the listview
      */
     @FXML
-    private void getDefinitions(){
-
+    private void getDefinitions() {
+        //Set searchText to the contents of the text field
         String searchText = searchTextField.getText();
-        definitionListView.getItems().clear();
 
-        try {
-            UrbanDictionaryResponse response = APIUtility.callUrbanDictionary(searchText);
+        if (!searchText.trim().isBlank()) {
+            //Clear the definition ListView
+            definitionListView.getItems().clear();
 
-            List<Definition> definitions = Arrays.asList(response.getList());
+            //If nothing or only spaces are entered into the searchText, show error message. Otherwise, execute below code.
+            try {
+                //Get response data by calling API with searchText
+                UrbanDictionaryResponse response = APIUtility.callUrbanDictionary(searchText);
 
-            definitionListView.getItems().addAll(definitions);
+                //Convert the response to an array list.
+                List<Definition> definitions = Arrays.asList(response.getList());
 
-            rowsReturnedLabel.setText(String.valueOf(definitions.size()));
+                //Add all array instances to the ListView
+                definitionListView.getItems().addAll(definitions);
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+                //State the number of definitions found.
+                rowsReturnedLabel.setText("Definitions Found: " + String.valueOf(definitions.size()));
+
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            errorLabel.setText("Please enter a search term first");
         }
     }
 
     @FXML
     void getSelection(MouseEvent event) {
-    selectedItem = definitionListView.getSelectionModel().getSelectedItem();
-    System.out.println(selectedItem);
+        //Upon making a selection, set the selectedItem so the details button can be pressed.
+        selectedItem = definitionListView.getSelectionModel().getSelectedItem();
+
+        System.out.println(selectedItem);
     }
 
     /***
@@ -93,31 +105,26 @@ public class SearchUrbanDictionaryViewController implements Initializable {
      */
     @FXML
     void switchScene(ActionEvent event) throws IOException {
+
+        //Set selectedItem based on what's selected in the list view
         selectedItem = definitionListView.getSelectionModel().getSelectedItem();
-        System.out.println(selectedItem);
+
+        //If an item is  selected, change to the definition view and pass the selected item to it.
+        //Else, ask user to select an item.
         if (!(selectedItem == null)) {
             errorLabel.setText("");
 
-
-
             SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition View", selectedItem);
-        }
-        else
-            {
+        } else {
             errorLabel.setText("Please select an item first");
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Make conditional sections blank.
+        //Make conditional labels blank until used.
         rowsReturnedLabel.setText("");
         errorLabel.setText("");
 
-//        movieListView.getSelectionModel().selectedItemProperty().addListener(
-//                (obs, oldValue, movieSelected) -> {
-//                    movieImageView.setImage(new Image(movieSelected.getPoster()));
-//                }
-//        );
     }
 }

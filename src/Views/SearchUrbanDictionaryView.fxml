@@ -19,12 +19,12 @@
             <children>
                 <HBox alignment="CENTER_RIGHT" prefWidth="654.0" stylesheets="@styles.css">
                     <children>
-                        <TextField fx:id="searchTextField" text="Enter search term">
+                        <TextField fx:id="searchTextField" promptText="Enter search term">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </TextField>
-                        <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#getDefinitions" text="Search for Term">
+                        <Button fx:id="searchBtn" defaultButton="true" mnemonicParsing="false" onAction="#getDefinitions" text="Search">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -61,7 +61,7 @@
                       </Label>
                   <HBox alignment="TOP_RIGHT" GridPane.columnIndex="2">
                      <children>
-                        <Button fx:id="detailsBtn" mnemonicParsing="false" onAction="#switchScene" text="Details">
+                        <Button fx:id="detailsBtn" mnemonicParsing="false" onAction="#switchScene" text="Click for more details">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -79,6 +79,9 @@
          <padding>
             <Insets left="10.0" top="5.0" />
          </padding>
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
       </Label>
     </children>
 </AnchorPane>

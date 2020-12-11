@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 import java.awt.*;
 import java.io.Console;
@@ -38,17 +39,16 @@ public class DefinitionViewController implements Initializable {
     private Label wordLabel;
 
     @FXML
-    private Label definitionLabel;
-
-    @FXML
-    private Label usageLabel;
-
-    @FXML
     private Label authorAndDateLabel;
 
     @FXML
     private Hyperlink permalinkHL;
 
+    @FXML
+    private TextArea definitionTextArea;
+
+    @FXML
+    private TextArea usageTextArea;
 
     @FXML
     void switchScene(ActionEvent event) throws IOException {
@@ -78,8 +78,9 @@ public class DefinitionViewController implements Initializable {
             Definition selectedItem = (Definition) stage.getUserData(); //Get selectedItem from stored userDate
 
             wordLabel.setText(selectedItem.getWord()); //Set word label appropriately
-            definitionLabel.setText(selectedItem.getDefinition()); //Set definition label appropriately
-            usageLabel.setText((selectedItem.getExample())); //Set usage label appropriately
+
+            definitionTextArea.setText(selectedItem.getDefinition()); //Set definition test area appropriately
+            usageTextArea.setText(selectedItem.getExample()); //Set usage text area appropriately
 
             String credit = "By " + selectedItem.getAuthor() + " on " + selectedItem.getWrittenOn(); //Prep label as it contains multiple values
             authorAndDateLabel.setText(credit); //Set author and date label with prepared text
