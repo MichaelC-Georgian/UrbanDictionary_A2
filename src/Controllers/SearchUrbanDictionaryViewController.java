@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
@@ -118,7 +119,7 @@ public class SearchUrbanDictionaryViewController implements Initializable {
         if (!(selectedItem == null)) {
             errorLabel.setText("");
 
-            SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition of " + selectedItem.getWord() , selectedItem);
+            SceneChanger.changeScene(event, "/Views/DefinitionView.fxml", "Definition of " + selectedItem.getWord(), selectedItem);
         } else {
             errorLabel.setText("Please search and select an item first");
         }
@@ -130,5 +131,34 @@ public class SearchUrbanDictionaryViewController implements Initializable {
         rowsReturnedLabel.setText("");
         errorLabel.setText("");
 
+
+
+        //Establish proper location of file
+        File oldSearchJson = new File("src/Utilities/definitionInfo.json");
+
+        //See if file exists, if so reload the data, otherwise do nothing.
+
+        if (oldSearchJson.exists()) {
+            //Clear the definition ListView
+            definitionListView.getItems().clear();
+
+            //If nothing or only spaces are entered into the searchText, show error message. Otherwise, execute below code.
+            try {
+                //Get response data by calling API with searchText
+                UrbanDictionaryResponse response = APIUtility.getDefinitionsFromJSON(oldSearchJson);
+
+                //Convert the response to an array list.
+                List<Definition> definitions = Arrays.asList(response.getList());
+
+                //Add all array instances to the ListView
+                definitionListView.getItems().addAll(definitions);
+
+                //State the number of definitions found.
+                rowsReturnedLabel.setText("Definitions Found: " + definitions.size());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
